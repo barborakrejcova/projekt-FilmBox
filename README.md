@@ -1,4 +1,5 @@
 # FilmBox
+- [GitHub pages](https://barborakrejcova.github.io/projekt-FilmBox/)
 
 Závěrečný projekt kurzu JS 1.
 
