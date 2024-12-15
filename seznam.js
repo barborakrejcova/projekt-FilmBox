@@ -1,5 +1,18 @@
 const filmy = [
 	{
+		id: 'prazdniny',
+		nazev: 'Prázdniny',
+		plakat: {
+			url: 'https://image.pmgstatic.com/cache/resized/w1526/files/images/film/posters/166/508/166508180_ee61fc.jpg',
+			sirka: 663,
+			vyska: 909,
+		},
+		ochutnavka: 'Vánoční romantický film.',
+		popis:
+			'Co by měla dělat čerstvě opuštěná holka v depresích krátce před Vánocemi? Změnit prostředí. Prostě vypadnout někam, kde jí všechno nebude připomínat, že se její život nápadně podobá zápiskům z Deníku Bridget Jonesové. Úplně ideální by bylo, kdyby našla jinou opuštěnou holku v depresích (nejlépe na druhém konci zeměkoule) a vyměnila si s ní aspoň na vánoční prázdniny bydlení. Taková je výchozí situace příběhu úspěšné komediální autorky Nancy Meyers, který je zároveň stejně rozpustilý jako její hit Po čem ženy touží a stejně citlivý jako její předchozí režijní počin Lepší pozdě nežli později.',
+		premiera: '2006-12-08',
+	},
+	{
 		id: 'pelisky',
 		nazev: 'Pelíšky',
 		plakat: {
@@ -104,3 +117,27 @@ const filmy = [
 		premiera: '2022-12-24',
 	},
 ]
+
+//4
+const seznamFilmu = document.querySelector('#seznam-filmu');
+seznamFilmu.innerHTML = '';
+
+filmy.forEach(film => {
+	seznamFilmu.innerHTML +=
+	`<div class="col">
+   <div class="card">
+      <img
+         src="${film.plakat.url}"
+         width="780"
+         height="520"
+         class="card-img-top"
+         alt="plakát"
+      />
+      <div class="card-body">
+         <h5 class="card-title">${film.nazev}</h5>
+         <p class="card-text">${film.ochutnavka}</p>
+         <a href="film.html#${film.id}" class="btn btn-primary">Přehrát</a>
+      </div>
+   </div>
+</div>`
+})

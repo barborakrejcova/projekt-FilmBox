@@ -1,5 +1,18 @@
 const filmy = [
 	{
+		id: 'prazdniny',
+		nazev: 'Prázdniny',
+		plakat: {
+			url: 'https://image.pmgstatic.com/cache/resized/w1526/files/images/film/posters/166/508/166508180_ee61fc.jpg',
+			sirka: 663,
+			vyska: 909,
+		},
+		ochutnavka: 'Vánoční romantický film.',
+		popis:
+			'Co by měla dělat čerstvě opuštěná holka v depresích krátce před Vánocemi? Změnit prostředí. Prostě vypadnout někam, kde jí všechno nebude připomínat, že se její život nápadně podobá zápiskům z Deníku Bridget Jonesové. Úplně ideální by bylo, kdyby našla jinou opuštěnou holku v depresích (nejlépe na druhém konci zeměkoule) a vyměnila si s ní aspoň na vánoční prázdniny bydlení. Taková je výchozí situace příběhu úspěšné komediální autorky Nancy Meyers, který je zároveň stejně rozpustilý jako její hit Po čem ženy touží a stejně citlivý jako její předchozí režijní počin Lepší pozdě nežli později.',
+		premiera: '2006-12-08',
+	},
+	{
 		id: 'pelisky',
 		nazev: 'Pelíšky',
 		plakat: {
@@ -104,3 +117,48 @@ const filmy = [
 		premiera: '2022-12-24',
 	},
 ]
+
+//5
+const filmID = window.location.hash.slice(1);
+const filmNazev = document.querySelector('#detail-filmu .card-title');
+const filmPopis = document.querySelector('#detail-filmu .card-text');
+const filmPlakat = document.querySelector('#detail-filmu img');
+
+filmy.forEach(film => {
+	if(film.id === filmID){
+		filmNazev.textContent = `${film.nazev}`
+		filmPopis.textContent = `${film.popis}`
+		filmPlakat.src = `${film.plakat.url}`
+	}
+})
+
+//8
+const form = document.querySelector('#note-form');
+
+form.addEventListener('submit', (event) => {
+	event.preventDefault();
+	const messageInput = document.querySelector('#message-input');
+	const termsCheckbox = document.querySelector('#terms-checkbox');
+
+	let isValid = true;
+
+	if (messageInput.value.trim() === '') {
+		messageInput.classList.add('is-invalid');
+		messageInput.focus();
+		isValid = false;
+	} else {
+		messageInput.classList.remove('is-invalid');
+	}
+	
+	if (!termsCheckbox.checked) {
+		termsCheckbox.classList.add('is-invalid');
+		termsCheckbox.focus();
+		isValid = false;
+	} else {
+		termsCheckbox.classList.remove('is-invalid');
+	}	
+	
+	if (isValid) {
+		form.innerHTML = `<p class="card-text">${messageInput.value}</p>`;
+	}
+});
